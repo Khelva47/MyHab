@@ -7,13 +7,13 @@ class Completion:
       id: str,
       habit_id: str,
       date: date,
-      completed_steps: int = 0,
+      completed_count: int = 0,
       notes: Optional[str] = "",
       created_at: Optional[datetime] = None
     ):
         self.id = id
         self.habit_id = habit_id
-        self.completed_steps = completed_steps
+        self.completed_count = completed_count
         self.notes = notes
         self.date = date
         self.created_at = created_at
