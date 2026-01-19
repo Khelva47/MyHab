@@ -1,8 +1,17 @@
-from supabase import create_client, Client
-from app.core.config import settings
+from sqlmodel import SQLModel, create_engine, Session
+from app.core.config import get_settings
 
-supabase: Client = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
+settings = get_settings()
+
+# MySQL engine
+engine = create_engine(
+    settings.DATABASE_URL,
+    echo=False,               # set True for SQL logs
+    pool_pre_ping=True,       # avoids stale MySQL connections
+    pool_recycle=1800         # MySQL idle timeout safety
+)
 
 
-def get_supabase() -> Client:
-    return supabase
+def get_db():
+    with Session(engine) as session:
+        yield session
