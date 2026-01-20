@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import SQLModel
 
-#from app.api.router import api_router
+from app.api.router import api_router
 from app.core.logging import logger
 from app.database.session import engine
 
@@ -39,7 +39,7 @@ def on_startup():
 # -----------------------------
 # Routers
 # -----------------------------
-#app.include_router(api_router, prefix="/api/v1")
+app.include_router(api_router, prefix="/api/v1")
 
 # -----------------------------
 # Health & Root
