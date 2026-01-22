@@ -8,7 +8,7 @@ class UserCreate(BaseModel):
     password: str
 
 class UserRead(BaseModel):
-    id: str
+    id: int
     username: str
     email: EmailStr
     created_at: datetime

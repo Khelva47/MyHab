@@ -18,7 +18,6 @@ class AuthService:
         hashed_password = get_password_hash(user_create.password)
         
         user = User(
-            id=user_create.id,
             username=user_create.username,
             email=user_create.email,
             hashed_password=hashed_password,
