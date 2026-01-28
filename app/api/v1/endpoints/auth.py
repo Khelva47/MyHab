@@ -5,7 +5,7 @@ from app.schemas.user import UserCreate, UserRead, Token, UserLogin
 from app.services.auth_service import AuthService
 from app.core.security import create_access_token
 from app.api.v1.deps import get_db_dep, get_current_user
-from app.core.config import Settings
+from app.core.config import get_settings
 
 router = APIRouter()
 
@@ -37,7 +37,7 @@ def login(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    access_token_expires = timedelta(minutes=Settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token_expires = timedelta(minutes=get_settings().ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.id},
         expires_delta=access_token_expires
